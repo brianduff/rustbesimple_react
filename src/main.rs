@@ -13,9 +13,9 @@ fn get_name() -> String {
 // CORS fairing so we can access the api from a different port on localhost.
 // This should be disabled in production.
 
-pub struct CORS();
+pub struct Cors();
 
-impl Fairing for CORS {
+impl Fairing for Cors {
     fn info(&self) -> Info {
         Info {
             name: "Add CORS headers to requests",
@@ -33,7 +33,7 @@ impl Fairing for CORS {
 
 fn main() {
   rocket::ignite()
-    .attach(CORS())
+    .attach(Cors())
     .mount("/api/", routes![get_name])
     .mount("/", StaticFiles::from("client/build"))
     .launch();
