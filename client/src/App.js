@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import { config } from './Config';
 
 export default function App() {
   const [name, setName] = useState("");
@@ -9,7 +10,7 @@ export default function App() {
     async function fetchData() {
       // TODO: this should not be hardcoded, and should vary between
       // dev & production.
-      const response = await axios("http://localhost:8000/api/name")
+      const response = await axios(config.urls.BASE_URL + "/api/name")
       setName(response.data)
     }
     fetchData()
